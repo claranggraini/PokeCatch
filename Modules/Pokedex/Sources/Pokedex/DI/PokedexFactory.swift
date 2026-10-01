@@ -11,4 +11,8 @@ enum PokedexFactory {
     static func makePokedexView(networkClient: NetworkClientProtocol) -> PokedexView {
         PokedexView(viewModel: makeViewModel(networkClient: networkClient))
     }
+    
+    static func makePokemonDetailView(pokemon: Pokemon) -> PokemonDetailView {
+        PokemonDetailView(viewModel: PokemonDetailViewModel(pokemon: pokemon))
+    }
 }

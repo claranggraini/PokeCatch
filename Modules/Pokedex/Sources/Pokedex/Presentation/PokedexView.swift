@@ -17,7 +17,12 @@ public struct PokedexView: View {
     
     public var body: some View {
         List(viewModel.pokemonList, id: \.id) { pokemon in
-            rowView(pokemon: pokemon)
+            NavigationLink(
+                value:                 PokedexRoute.detail(pokemon: pokemon)
+            ) {
+                rowView(pokemon: pokemon)
+            }
+            .navigationLinkIndicatorVisibility(.hidden)
         }
         .navigationTitle("Pokedex")
         .task {

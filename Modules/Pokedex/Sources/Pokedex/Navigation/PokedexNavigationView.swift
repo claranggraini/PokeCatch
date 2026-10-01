@@ -16,8 +16,8 @@ public struct PokedexNavigationView: View {
             PokedexFactory.makePokedexView(networkClient: networkClient)
                 .navigationDestination(for: PokedexRoute.self) { route in
                     switch route {
-                    case .detail(let id):
-                        PokemonDetailView(id: id)
+                    case .detail(let pokemon):
+                        PokedexFactory.makePokemonDetailView(pokemon: pokemon)
                     }
                 }
         }

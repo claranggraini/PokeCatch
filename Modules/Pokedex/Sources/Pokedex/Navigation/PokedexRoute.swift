@@ -6,5 +6,5 @@
 //
 
 enum PokedexRoute: Hashable {
-    case detail(id: String)
+    case detail(pokemon: Pokemon)
 }

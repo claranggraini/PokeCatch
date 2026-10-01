@@ -13,7 +13,7 @@ struct PokemonList {
     let name: String
 }
 
-struct Pokemon {
+struct Pokemon: Hashable {
     let id: Int
     let name: String
     let sprite: String
@@ -23,6 +23,14 @@ struct Pokemon {
     let height: Int
     let weight: Int
     var wasCaught: Bool
+    
+    var heightDisplay: String {
+        "\(height) M"
+    }
+    
+    var weightDisplay: String {
+        "\(weight) KG"
+    }
     
     init(id: Int?, name: String?, sprite: String?, stats: [Stat]?, moves: [Move]?, types: [PokemonType]?, height: Int?, weight: Int?, wasCaught: Bool) {
         
@@ -50,7 +58,7 @@ struct Pokemon {
     }
 }
 
-struct Stat {
+struct Stat: Hashable {
     let baseStat: Int?
     let name: String?
     
@@ -60,22 +68,27 @@ struct Stat {
     }
 }
 
-struct Move {
+struct Move: Hashable {
     let name: String?
     let levelLearnedAt: Int?
     
+    var learnedAtDisplay: String {
+        return "Learned at Lv \(String(levelLearnedAt ?? 0))"
+    }
     init(name: String?, levelLearnedAt: Int?) {
         self.name = name ?? "Move Name"
         self.levelLearnedAt = levelLearnedAt ?? 0
     }
 }
 
-struct PokemonType {
-    let name: String?
-    let color: Color?
-    
+struct PokemonType: Hashable {
+    let name: String
+
+    var color: Color? {
+        AppColors.getPokemonTypeColor(name)
+    }
+
     init(name: String?) {
         self.name = name ?? "Pokemon Type"
-        self.color = AppColors.getPokemonTypeColor(name ?? "")
     }
 }
