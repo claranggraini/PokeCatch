@@ -7,14 +7,23 @@
 
 import SwiftUI
 import CoreData
+import Navigation
 
 @main
 struct PokeCatchApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject private var coordinator: AppCoordinator
 
+        init() {
+            let coordinator = AppCoordinator()
+
+            _coordinator = StateObject(
+                wrappedValue: coordinator
+            )
+        }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRootView(coordinator: coordinator)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
