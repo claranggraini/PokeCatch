@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EF8306EB02100B1F15C /* DesignSystem */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EBFC7EB6306EA94E00B1F15C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,6 +33,16 @@
 		EBFC7EBF306EA94E00B1F15C /* PokeCatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeCatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		EBFC7EF6306EAC3100B1F15C /* Exceptions for "Modules" folder in "PokeCatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DesignSystem,
+			);
+			target = EBFC7EA2306EA94D00B1F15C /* PokeCatch */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EBFC7EA5306EA94D00B1F15C /* PokeCatch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -45,6 +59,14 @@
 			path = PokeCatchUITests;
 			sourceTree = "<group>";
 		};
+		EBFC7EF4306EABA400B1F15C /* Modules */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EBFC7EF6306EAC3100B1F15C /* Exceptions for "Modules" folder in "PokeCatch" target */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +99,10 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7EA5306EA94D00B1F15C /* PokeCatch */,
+				EBFC7EF4306EABA400B1F15C /* Modules */,
 				EBFC7EB8306EA94E00B1F15C /* PokeCatchTests */,
 				EBFC7EC2306EA94E00B1F15C /* PokeCatchUITests */,
+				EBFC7EF7306EB02100B1F15C /* Frameworks */,
 				EBFC7EA4306EA94D00B1F15C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +115,13 @@
 				EBFC7EBF306EA94E00B1F15C /* PokeCatchUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EBFC7EF7306EB02100B1F15C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +141,11 @@
 			);
 			fileSystemSynchronizedGroups = (
 				EBFC7EA5306EA94D00B1F15C /* PokeCatch */,
+				EBFC7EF4306EABA400B1F15C /* Modules */,
 			);
 			name = PokeCatch;
 			packageProductDependencies = (
+				EBFC7EF8306EB02100B1F15C /* DesignSystem */,
 			);
 			productName = PokeCatch;
 			productReference = EBFC7EA3306EA94D00B1F15C /* PokeCatch.app */;
@@ -578,6 +612,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EBFC7EF8306EB02100B1F15C /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EBFC7E9B306EA94D00B1F15C /* Project object */;
 }
