@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum URLError: LocalizedError {
+public enum URLError: LocalizedError {
     case unauthorized
     case invalidResponse
     case decoding
