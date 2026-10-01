@@ -7,23 +7,18 @@
 
 import SwiftUI
 import CoreData
+import Networking
 import Navigation
 
 @main
 struct PokeCatchApp: App {
     let persistenceController = PersistenceController.shared
-    @StateObject private var coordinator: AppCoordinator
+    @StateObject private var coordinator = AppCoordinator()
+    private let networkClient: NetworkClientProtocol = NetworkService()
 
-        init() {
-            let coordinator = AppCoordinator()
-
-            _coordinator = StateObject(
-                wrappedValue: coordinator
-            )
-        }
     var body: some Scene {
         WindowGroup {
-            AppRootView(coordinator: coordinator)
+            AppRootView(coordinator: coordinator, networkClient: networkClient)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

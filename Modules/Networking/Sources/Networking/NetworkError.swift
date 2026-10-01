@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum URLError: LocalizedError {
+public enum NetworkError: LocalizedError, @unchecked Sendable {
     case unauthorized
     case invalidResponse
     case decoding

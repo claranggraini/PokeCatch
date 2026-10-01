@@ -6,6 +6,6 @@
 //
 
 public enum AppRoute: Hashable {
-    case order
+    case pokedex
     case myPokemon
 }

@@ -6,14 +6,14 @@
 //
 import Foundation
 
-final class NetworkService: NetworkClientProtocol {
+public final class NetworkService: NetworkClientProtocol {
     private let session: URLSession
 
     public init(session: URLSession = .shared) {
         self.session = session
     }
     
-    func request<T: Decodable, E: Endpoint>(to endpoint: E, decodeTo model: T.Type) async -> Result<T, URLError> {
+    public func request<T: Decodable, E: Endpoint>(to endpoint: E, decodeTo model: T.Type) async -> Result<T, NetworkError> {
         
         guard let urlRequest = endpoint.urlRequest else {
             return .failure(.invalidResponse)
