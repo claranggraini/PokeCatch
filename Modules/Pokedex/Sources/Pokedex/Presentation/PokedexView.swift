@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DesignSystem
 
 public struct PokedexView: View {
     @StateObject var viewModel: PokedexViewModel
@@ -15,11 +16,35 @@ public struct PokedexView: View {
     }
     
     public var body: some View {
-        VStack {
-            
+        List(viewModel.pokemonList, id: \.id) { pokemon in
+            rowView(pokemon: pokemon)
         }
+        .navigationTitle("Pokedex")
         .task {
             await viewModel.loadPokemonList()
+        }
+    }
+    
+    @ViewBuilder
+    func rowView(pokemon: Pokemon) -> some View {
+        HStack(spacing: 16) {
+            CachedAsyncImage(
+                urlString: pokemon.sprite,
+                content: { $0.resizable().scaledToFit().frame(width: 95, height: 95) },
+                placeholder: { ProgressView() },
+                error: { IconAssets.photo.resizable().scaledToFit().frame(width: 95, height: 95) }
+            )
+            
+            Text("#\(pokemon.id) \(pokemon.name)")
+                .font(.title2)
+            
+            Spacer()
+            
+            if pokemon.wasCaught {
+                Image("ic_pokeball", bundle: .module)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+            }
         }
     }
 }

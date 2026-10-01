@@ -10,4 +10,5 @@ public enum IconAssets {
     public static let delete = Image(systemName: "xmark.circle.fill")
     public static let pokedex = Image(systemName: "ipad")
     public static let inventory = Image(systemName: "briefcase.fill")
+    public static let photo = Image(systemName: "photo")
 }

@@ -14,15 +14,15 @@ struct PokemonList {
 }
 
 struct Pokemon {
-    let id: Int?
-    let name: String?
-    let sprite: String?
-    let stats: [Stat]?
-    let moves: [Move]?
-    let types: [PokemonType]?
-    let height: Int?
-    let weight: Int?
-    var wasCaught: Bool?
+    let id: Int
+    let name: String
+    let sprite: String
+    let stats: [Stat]
+    let moves: [Move]
+    let types: [PokemonType]
+    let height: Int
+    let weight: Int
+    var wasCaught: Bool
     
     init(id: Int?, name: String?, sprite: String?, stats: [Stat]?, moves: [Move]?, types: [PokemonType]?, height: Int?, weight: Int?, wasCaught: Bool) {
         

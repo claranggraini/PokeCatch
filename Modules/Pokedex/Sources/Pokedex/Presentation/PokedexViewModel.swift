@@ -21,6 +21,8 @@ final class PokedexViewModel: ObservableObject {
     }
 
     func loadPokemonList() async {
+        guard pokemonList.isEmpty else { return }
+        
         isLoading = true
         error = nil
 
@@ -29,7 +31,6 @@ final class PokedexViewModel: ObservableObject {
         } catch {
             self.error = error
         }
-        print(pokemonList)
         isLoading = false
     }
 }
