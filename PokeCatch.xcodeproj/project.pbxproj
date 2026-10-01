@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EF8306EB02100B1F15C /* DesignSystem */; };
+		EBFC7EFC306EB40100B1F15C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EFB306EB40100B1F15C /* Networking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DesignSystem,
+				Networking,
 			);
 			target = EBFC7EA2306EA94D00B1F15C /* PokeCatch */;
 		};
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBFC7EFC306EB40100B1F15C /* Networking in Frameworks */,
 				EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +149,7 @@
 			name = PokeCatch;
 			packageProductDependencies = (
 				EBFC7EF8306EB02100B1F15C /* DesignSystem */,
+				EBFC7EFB306EB40100B1F15C /* Networking */,
 			);
 			productName = PokeCatch;
 			productReference = EBFC7EA3306EA94D00B1F15C /* PokeCatch.app */;
@@ -617,6 +621,10 @@
 		EBFC7EF8306EB02100B1F15C /* DesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DesignSystem;
+		};
+		EBFC7EFB306EB40100B1F15C /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
