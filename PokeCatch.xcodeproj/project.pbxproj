@@ -10,6 +10,7 @@
 		EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EF8306EB02100B1F15C /* DesignSystem */; };
 		EBFC7EFC306EB40100B1F15C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EFB306EB40100B1F15C /* Networking */; };
 		EBFC7F02306EC15800B1F15C /* Pokedex in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7F01306EC15800B1F15C /* Pokedex */; };
+		EBFC7F04306EC15800B1F15C /* MyPokemon in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7F03306EC15800B1F15C /* MyPokemon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DesignSystem,
+				MyPokemon,
 				Networking,
 				Pokedex,
 			);
@@ -81,6 +83,7 @@
 				EBFC7EFC306EB40100B1F15C /* Networking in Frameworks */,
 				EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */,
 				EBFC7F02306EC15800B1F15C /* Pokedex in Frameworks */,
+				EBFC7F04306EC15800B1F15C /* MyPokemon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +157,7 @@
 				EBFC7EF8306EB02100B1F15C /* DesignSystem */,
 				EBFC7EFB306EB40100B1F15C /* Networking */,
 				EBFC7F01306EC15800B1F15C /* Pokedex */,
+				EBFC7F03306EC15800B1F15C /* MyPokemon */,
 			);
 			productName = PokeCatch;
 			productReference = EBFC7EA3306EA94D00B1F15C /* PokeCatch.app */;
@@ -633,6 +637,10 @@
 		EBFC7F01306EC15800B1F15C /* Pokedex */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Pokedex;
+		};
+		EBFC7F03306EC15800B1F15C /* MyPokemon */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyPokemon;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

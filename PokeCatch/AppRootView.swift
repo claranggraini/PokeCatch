@@ -9,21 +9,25 @@ import SwiftUI
 import DesignSystem
 import Networking
 import Pokedex
+import MyPokemon
 
 struct AppRootView: View {
 
     @ObservedObject var coordinator: AppCoordinator
     let networkClient: NetworkClientProtocol
     let persistence: PokemonPersistenceProtocol
+    let myPokemonPersistence: MyPokemonPersistenceProtocol
 
     init(
         coordinator: AppCoordinator,
         networkClient: NetworkClientProtocol,
-        persistence: PokemonPersistenceProtocol
+        persistence: PokemonPersistenceProtocol,
+        myPokemonPersistence: MyPokemonPersistenceProtocol
     ) {
         self.coordinator = coordinator
         self.networkClient = networkClient
         self.persistence = persistence
+        self.myPokemonPersistence = myPokemonPersistence
     }
 
     var body: some View {
@@ -41,7 +45,8 @@ struct AppRootView: View {
             .tag(AppTab.pokedex)
 
             MyPokemonNavigationView(
-                path: $coordinator.myPokemonPath
+                coordinator: coordinator.myPokemonCoordinator,
+                persistence: myPokemonPersistence
             )
             .tabItem {
                 IconAssets.inventory
@@ -50,20 +55,5 @@ struct AppRootView: View {
             .tag(AppTab.myPokemon)
         }
         .environmentObject(coordinator)
-    }
-}
-
-struct MyPokemonNavigationView: View {
-
-    @Binding var path: NavigationPath
-
-    init(path: Binding<NavigationPath>) {
-        self._path = path
-    }
-
-    var body: some View {
-        NavigationStack(path: $path) {
-            EmptyView()
-        }
     }
 }

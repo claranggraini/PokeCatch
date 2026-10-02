@@ -17,13 +17,17 @@ struct PokeCatchApp: App {
     private let pokemonPersistence = CoreDataPokemonPersistence(
         controller: PersistenceController.shared
     )
+    private let myPokemonPersistence = CoreDataMyPokemonPersistence(
+        controller: PersistenceController.shared
+    )
 
     var body: some Scene {
         WindowGroup {
             AppRootView(
                 coordinator: coordinator,
                 networkClient: networkClient,
-                persistence: pokemonPersistence
+                persistence: pokemonPersistence,
+                myPokemonPersistence: myPokemonPersistence
             )
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

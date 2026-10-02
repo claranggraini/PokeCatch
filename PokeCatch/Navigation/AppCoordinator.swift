@@ -1,19 +1,22 @@
 import SwiftUI
 import Combine
 import Pokedex
+import MyPokemon
 
 @MainActor
 final class AppCoordinator: ObservableObject {
     @Published var selectedTab: AppTab = .pokedex
-    @Published var myPokemonPath = NavigationPath()
+    let myPokemonCoordinator: MyPokemonCoordinator
     let pokedexCoordinator: PokedexCoordinator
 
     init() {
         self.pokedexCoordinator = PokedexCoordinator()
+        self.myPokemonCoordinator = MyPokemonCoordinator()
     }
 
     init(pokedexCoordinator: PokedexCoordinator) {
         self.pokedexCoordinator = pokedexCoordinator
+        self.myPokemonCoordinator = MyPokemonCoordinator()
     }
 
     func selectTab(_ tab: AppTab) {
@@ -35,7 +38,7 @@ final class AppCoordinator: ObservableObject {
         case .pokedex:
             pokedexCoordinator.popToRoot()
         case .myPokemon:
-            myPokemonPath = NavigationPath()
+            myPokemonCoordinator.popToRoot()
         case .pokemonDetail(let id):
             pokedexCoordinator.showPokemonDetail(pokemon: nil, id: id)
         }
