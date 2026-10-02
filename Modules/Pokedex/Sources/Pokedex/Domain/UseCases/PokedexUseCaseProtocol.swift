@@ -8,4 +8,5 @@ import Foundation
 
 protocol PokedexUseCaseProtocol: Sendable {
     func fetchPokemonList() async throws -> [Pokemon]
+    func fetchPokemonDetail(id: Int) async throws -> Pokemon
 }

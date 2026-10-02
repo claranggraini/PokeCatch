@@ -27,4 +27,14 @@ final class PokedexUseCase: PokedexUseCaseProtocol {
             throw error
         }
     }
+
+    func fetchPokemonDetail(id: Int) async throws -> Pokemon {
+        let result = await repository.fetchPokemonDetail(id: id)
+        switch result {
+        case .success(let pokemon):
+            return pokemon
+        case .failure(let error):
+            throw error
+        }
+    }
 }

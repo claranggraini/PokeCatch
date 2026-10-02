@@ -2,10 +2,13 @@ import Networking
 
 @MainActor
 enum PokedexFactory {
-    static func makeViewModel(networkClient: NetworkClientProtocol) -> PokedexViewModel {
+    static func makeUseCase(networkClient: NetworkClientProtocol) -> PokedexUseCaseProtocol {
         let repository = PokedexRepository(networkClient: networkClient)
-        let useCase = PokedexUseCase(repository: repository)
-        return PokedexViewModel(useCase: useCase)
+        return PokedexUseCase(repository: repository)
+    }
+
+    static func makeViewModel(networkClient: NetworkClientProtocol) -> PokedexViewModel {
+        PokedexViewModel(useCase: makeUseCase(networkClient: networkClient))
     }
 
     static func makePokedexView(networkClient: NetworkClientProtocol) -> PokedexView {
@@ -17,7 +20,7 @@ enum PokedexFactory {
             viewModel: PokemonDetailViewModel(
                 pokemon: pokemon,
                 id: id,
-                networkClient: networkClient
+                useCase: makeUseCase(networkClient: networkClient)
             )
         )
     }

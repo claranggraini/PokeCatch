@@ -6,33 +6,26 @@
 //
 
 import SwiftUI
-import Networking
 
 @MainActor
 final class PokemonDetailViewModel: ObservableObject {
     @Published var pokemon: Pokemon?
     private let id: Int?
-    private let networkClient: NetworkClientProtocol
+    private let useCase: PokedexUseCaseProtocol
 
-    init(pokemon: Pokemon? = nil, id: Int?, networkClient: NetworkClientProtocol) {
+    init(pokemon: Pokemon? = nil, id: Int?, useCase: PokedexUseCaseProtocol) {
         self.pokemon = pokemon
         self.id = id
-        self.networkClient = networkClient
+        self.useCase = useCase
     }
 
     func load() async {
         guard let id else { return }
 
-        let result: Result<PokemonResponse, NetworkError> = await networkClient.request(
-            to: PokedexEndpoint.getPokemonDetailById(id: id),
-            decodeTo: PokemonResponse.self
-        )
-
-        if case .success(let response) = result {
-            pokemon = PokedexMapper.mapPokemonResponsesToModel(
-                input: response,
-                caughtPokemonsId: []
-            )
+        do {
+            pokemon = try await useCase.fetchPokemonDetail(id: id)
+        } catch {
+            pokemon = nil
         }
     }
 }

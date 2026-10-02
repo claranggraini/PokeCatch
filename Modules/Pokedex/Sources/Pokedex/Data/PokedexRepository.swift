@@ -47,6 +47,25 @@ final class PokedexRepository: PokedexRepositoryProtocol {
         }
         return .success(pokemonDetailList)
     }
+
+    func fetchPokemonDetail(id: Int) async -> Result<Pokemon, NetworkError> {
+        let result: Result<PokemonResponse, NetworkError> = await networkClient.request(
+            to: PokedexEndpoint.getPokemonDetailById(id: id),
+            decodeTo: PokemonResponse.self
+        )
+
+        switch result {
+        case .success(let response):
+            return .success(
+                PokedexMapper.mapPokemonResponsesToModel(
+                    input: response,
+                    caughtPokemonsId: fetchCaughtPokemonIds()
+                )
+            )
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
     
     func fetchCaughtPokemonIds() -> [Int] {
         return []
