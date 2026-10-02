@@ -29,7 +29,6 @@ struct PokeCatchApp: App {
                 persistence: pokemonPersistence,
                 myPokemonPersistence: myPokemonPersistence
             )
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
