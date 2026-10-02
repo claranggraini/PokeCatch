@@ -10,9 +10,11 @@ import DesignSystem
 
 public struct PokemonDetailView: View {
     @StateObject var viewModel: PokemonDetailViewModel
+    private let coordinator: PokedexCoordinator
 
-    init(viewModel: PokemonDetailViewModel) {
+    init(viewModel: PokemonDetailViewModel, coordinator: PokedexCoordinator) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.coordinator = coordinator
     }
 
     public var body: some View {
@@ -44,6 +46,20 @@ public struct PokemonDetailView: View {
         }
         .padding(.horizontal, 24)
         .toolbar(.hidden, for: .tabBar)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                if let pokemon = viewModel.pokemon {
+                    Button {
+                        coordinator.push(.catchPokemon(pokemon))
+                    } label: {
+                        Text("Catch")
+                    }
+                } else {
+                    Text("Catch")
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
         .task {
             await viewModel.load()
         }

@@ -14,10 +14,16 @@ struct AppRootView: View {
 
     @ObservedObject var coordinator: AppCoordinator
     let networkClient: NetworkClientProtocol
+    let persistence: PokemonPersistenceProtocol
 
-    init(coordinator: AppCoordinator, networkClient: NetworkClientProtocol) {
+    init(
+        coordinator: AppCoordinator,
+        networkClient: NetworkClientProtocol,
+        persistence: PokemonPersistenceProtocol
+    ) {
         self.coordinator = coordinator
         self.networkClient = networkClient
+        self.persistence = persistence
     }
 
     var body: some View {
@@ -25,7 +31,8 @@ struct AppRootView: View {
 
             PokedexNavigationView(
                 coordinator: coordinator.pokedexCoordinator,
-                networkClient: networkClient
+                networkClient: networkClient,
+                persistence: persistence
             )
             .tabItem {
                 IconAssets.pokedex

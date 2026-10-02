@@ -10,10 +10,23 @@ import Testing
 
 struct PokeCatchTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+    @MainActor
+    @Test func repeatedCatchesCreateSeparateRecords() throws {
+        let controller = PersistenceController(inMemory: true)
+        let persistence = CoreDataPokemonPersistence(controller: controller)
+
+        try persistence.saveCaughtPokemon(
+            pokedexID: 25, nickname: "Sparky", sprite: "sprite", height: 4, weight: 60, types: []
+        )
+        try persistence.saveCaughtPokemon(
+            pokedexID: 25, nickname: "Pikachu", sprite: "sprite", height: 4, weight: 60, types: []
+        )
+
+        let caught = try controller.fetchPokemonEntities()
+        #expect(caught.count == 2)
+        #expect(Set(caught.map(\.id)) == Set([Int32(25), Int32(26)]))
+        #expect(caught.allSatisfy { $0.pokedexID == 25 })
+        #expect(Set(caught.compactMap(\.name)) == Set(["Sparky", "Pikachu"]))
     }
 
 }

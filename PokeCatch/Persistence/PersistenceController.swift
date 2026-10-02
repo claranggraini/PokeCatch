@@ -44,7 +44,7 @@ struct PersistenceController {
     @MainActor
     func fetchPokemonEntities() throws -> [PokemonEntity] {
         let request = PokemonEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \PokemonEntity.pokedexID, ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \PokemonEntity.id, ascending: true)]
         return try container.viewContext.fetch(request)
     }
 
@@ -52,8 +52,42 @@ struct PersistenceController {
     func fetchPokemonEntity(id: Int32) throws -> PokemonEntity? {
         let request = PokemonEntity.fetchRequest()
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "pokedexID == %d", id)
+        request.predicate = NSPredicate(format: "id == %d", id)
         return try container.viewContext.fetch(request).first
+    }
+
+    @MainActor
+    @discardableResult
+    func insertCaughtPokemon(
+        pokedexID: Int32,
+        nickname: String,
+        sprite: String,
+        height: Int32,
+        weight: Int32,
+        color: String?,
+        pokemonType: [String]?
+    ) throws -> PokemonEntity {
+        let request = PokemonEntity.fetchRequest()
+        let usedIDs = Set(try container.viewContext.fetch(request).map(\.id))
+        var recordID = pokedexID
+        while usedIDs.contains(recordID) {
+            guard recordID < Int32.max else {
+                throw CocoaError(.validationNumberTooLarge)
+            }
+            recordID += 1
+        }
+
+        let entity = PokemonEntity(context: container.viewContext)
+        entity.id = recordID
+        entity.pokedexID = pokedexID
+        entity.name = nickname
+        entity.sprite = sprite
+        entity.height = height
+        entity.weight = weight
+        entity.color = color
+        entity.pokemonType = pokemonType as NSArray?
+        try save()
+        return entity
     }
 
     @MainActor
@@ -68,7 +102,7 @@ struct PersistenceController {
         color: String?,
         pokemonType: [String]?
     ) throws -> PokemonEntity {
-        let entity = try fetchPokemonEntity(id: pokedexID) ?? PokemonEntity(context: container.viewContext)
+        let entity = try fetchPokemonEntity(id: id) ?? PokemonEntity(context: container.viewContext)
         entity.pokedexID = pokedexID
         entity.id = id
         entity.name = name

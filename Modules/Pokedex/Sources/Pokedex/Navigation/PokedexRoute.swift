@@ -7,4 +7,5 @@
 
 public enum PokedexRoute: Hashable {
     case detail(Pokemon?, Int?)
+    case catchPokemon(Pokemon)
 }

@@ -15,13 +15,39 @@ enum PokedexFactory {
         PokedexView(viewModel: makeViewModel(networkClient: networkClient))
     }
     
-    static func makePokemonDetailView(pokemon: Pokemon?, id: Int?, networkClient: NetworkClientProtocol) -> PokemonDetailView {
+    static func makePokemonDetailView(
+        pokemon: Pokemon?,
+        id: Int?,
+        networkClient: NetworkClientProtocol,
+        coordinator: PokedexCoordinator
+    ) -> PokemonDetailView {
         PokemonDetailView(
             viewModel: PokemonDetailViewModel(
                 pokemon: pokemon,
                 id: id,
                 useCase: makeUseCase(networkClient: networkClient)
-            )
+            ),
+            coordinator: coordinator
         )
+    }
+
+    static func makeCatchPokemonView(
+        pokemon: Pokemon,
+        persistence: PokemonPersistenceProtocol,
+        coordinator: PokedexCoordinator
+    ) -> CatchPokemonView {
+        CatchPokemonView(
+            pokemon: pokemon,
+            viewModel: makeCatchPokemonViewModel(persistence: persistence),
+            coordinator: coordinator
+        )
+    }
+
+    static func makeCatchPokemonViewModel(
+        persistence: PokemonPersistenceProtocol
+    ) -> CatchPokemonViewModel {
+        let repository = CatchPokemonRepository(persistence: persistence)
+        let useCase = CatchPokemonUseCase(repository: repository)
+        return CatchPokemonViewModel(useCase: useCase)
     }
 }
