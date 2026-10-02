@@ -10,6 +10,7 @@ import Networking
 enum PokedexEndpoint {
     case getPokemons
     case getPokemonDetail(name: String)
+    case getPokemonDetailById(id: Int)
 }
 
 extension PokedexEndpoint: Endpoint {
@@ -23,6 +24,8 @@ extension PokedexEndpoint: Endpoint {
             return "/api/v2/pokemon"
         case .getPokemonDetail(let name):
             return "/api/v2/pokemon/\(name)"
+        case .getPokemonDetailById(let id):
+            return "/api/v2/pokemon/\(id)"
         }
     }
     
@@ -38,7 +41,7 @@ extension PokedexEndpoint: Endpoint {
         switch self {
         case .getPokemons:
             return .get
-        case .getPokemonDetail:
+        case .getPokemonDetail, .getPokemonDetailById:
             return .get
         }
     }

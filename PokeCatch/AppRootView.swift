@@ -7,25 +7,24 @@
 
 import SwiftUI
 import DesignSystem
-import Navigation
 import Networking
 import Pokedex
 
-public struct AppRootView: View {
+struct AppRootView: View {
 
     @ObservedObject var coordinator: AppCoordinator
     let networkClient: NetworkClientProtocol
 
-    public init(coordinator: AppCoordinator, networkClient: NetworkClientProtocol) {
+    init(coordinator: AppCoordinator, networkClient: NetworkClientProtocol) {
         self.coordinator = coordinator
         self.networkClient = networkClient
     }
 
-    public var body: some View {
+    var body: some View {
         TabView(selection: $coordinator.selectedTab) {
 
             PokedexNavigationView(
-                path: $coordinator.pokedexPath,
+                coordinator: coordinator.pokedexCoordinator,
                 networkClient: networkClient
             )
             .tabItem {
@@ -47,15 +46,15 @@ public struct AppRootView: View {
     }
 }
 
-public struct MyPokemonNavigationView: View {
+struct MyPokemonNavigationView: View {
 
     @Binding var path: NavigationPath
 
-    public init(path: Binding<NavigationPath>) {
+    init(path: Binding<NavigationPath>) {
         self._path = path
     }
 
-    public var body: some View {
+    var body: some View {
         NavigationStack(path: $path) {
             EmptyView()
         }

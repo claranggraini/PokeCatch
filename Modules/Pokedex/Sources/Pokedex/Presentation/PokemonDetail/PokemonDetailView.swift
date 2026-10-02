@@ -44,6 +44,9 @@ public struct PokemonDetailView: View {
         }
         .padding(.horizontal, 24)
         .toolbar(.hidden, for: .tabBar)
+        .task {
+            await viewModel.load()
+        }
     }
     
     @ViewBuilder
@@ -102,8 +105,4 @@ public struct PokemonDetailView: View {
         .scrollBounceBehavior(.automatic)
         .frame(maxHeight: 160)
     }
-}
-
-#Preview {
-    PokemonDetailView(viewModel: PokemonDetailViewModel())
 }

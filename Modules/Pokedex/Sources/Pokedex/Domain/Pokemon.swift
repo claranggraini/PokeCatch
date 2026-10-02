@@ -13,7 +13,7 @@ struct PokemonList {
     let name: String
 }
 
-struct Pokemon: Hashable {
+public struct Pokemon: Hashable {
     let id: Int
     let name: String
     let sprite: String

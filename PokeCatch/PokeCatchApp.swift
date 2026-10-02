@@ -8,7 +8,6 @@
 import SwiftUI
 import CoreData
 import Networking
-import Navigation
 
 @main
 struct PokeCatchApp: App {

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EF8306EB02100B1F15C /* DesignSystem */; };
 		EBFC7EFC306EB40100B1F15C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EFB306EB40100B1F15C /* Networking */; };
-		EBFC7EFF306EBA8A00B1F15C /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7EFE306EBA8A00B1F15C /* Navigation */; };
 		EBFC7F02306EC15800B1F15C /* Pokedex in Frameworks */ = {isa = PBXBuildFile; productRef = EBFC7F01306EC15800B1F15C /* Pokedex */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +40,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DesignSystem,
-				Navigation,
 				Networking,
 				Pokedex,
 			);
@@ -80,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBFC7EFF306EBA8A00B1F15C /* Navigation in Frameworks */,
 				EBFC7EFC306EB40100B1F15C /* Networking in Frameworks */,
 				EBFC7EF9306EB02100B1F15C /* DesignSystem in Frameworks */,
 				EBFC7F02306EC15800B1F15C /* Pokedex in Frameworks */,
@@ -156,7 +153,6 @@
 			packageProductDependencies = (
 				EBFC7EF8306EB02100B1F15C /* DesignSystem */,
 				EBFC7EFB306EB40100B1F15C /* Networking */,
-				EBFC7EFE306EBA8A00B1F15C /* Navigation */,
 				EBFC7F01306EC15800B1F15C /* Pokedex */,
 			);
 			productName = PokeCatch;
@@ -633,10 +629,6 @@
 		EBFC7EFB306EB40100B1F15C /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
-		};
-		EBFC7EFE306EBA8A00B1F15C /* Navigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Navigation;
 		};
 		EBFC7F01306EC15800B1F15C /* Pokedex */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -5,6 +5,6 @@
 //  Created by Clara on 01/10/26.
 //
 
-enum PokedexRoute: Hashable {
-    case detail(pokemon: Pokemon)
+public enum PokedexRoute: Hashable {
+    case detail(Pokemon?, Int?)
 }

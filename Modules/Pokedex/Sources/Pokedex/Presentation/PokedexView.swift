@@ -18,7 +18,7 @@ public struct PokedexView: View {
     public var body: some View {
         List(viewModel.pokemonList, id: \.id) { pokemon in
             NavigationLink(
-                value:                 PokedexRoute.detail(pokemon: pokemon)
+                value: PokedexRoute.detail(pokemon, nil)
             ) {
                 rowView(pokemon: pokemon)
             }
